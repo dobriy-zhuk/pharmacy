@@ -1,21 +1,15 @@
 version: '3.7'
 
 services:
-  db:
-    image: "postgres:11"
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+  django:
+    container_name: pharmacy_site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pharmacy_docker
+    stdin_open: true
+    tty: true
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
-  web:
-    build: .
-    command: python django_server/manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+    - .:/var/www/pharmacy
     ports:
-      - 8000:8000
-    depends_on:
-      - db
-
-volumes:
-  postgres_data:
+    - "8000:8000"
