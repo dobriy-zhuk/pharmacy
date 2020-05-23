@@ -15,15 +15,15 @@
     <br>
     <a>Цена: {{o.fields.price}}</a>
     <br>
-    <a href="/home/product/{{o.pk}}">Подробнее</a>
+    <a href="/product/{{o.pk}}">Подробнее</a>
     <br>
-    <a href="/home/add_to_cart/{{o.pk}}">Добавить в корзину</a>
+    <a href="/add_to_cart/{{o.pk}}">Добавить в корзину</a>
     <br>
     <a>------------------</a>
     <br>
     {% endfor %}
-    <a href="/home/delete_cart">Очистить корзину</a>
+    <a href="/delete_cart">Очистить корзину</a>
     <br>
-    <a href="/home/cart">Перейти в корзину</a>
+    <a href="/cart">Перейти в корзину</a>
   </body>
 </html>

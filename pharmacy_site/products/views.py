@@ -75,3 +75,5 @@ def Cart(request):
     data = {'products': product_list}
     print(data)
     return render(request, 'cart.html', data)
+def index(request):
+    return render(request, 'index.html')
