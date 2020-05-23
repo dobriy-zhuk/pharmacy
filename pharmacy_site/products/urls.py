@@ -10,7 +10,7 @@ urlpatterns = [
     path('registration', views.RegistartionFrom, name='work'),
     path('register_user', views.UserAdd, name='work'),
     path('cart', views.Cart, name='work'),
-    path('index', views.index, name='index'),
+    path('index/', views.index, name='index'),
 
 
 
