@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  </head>
+
+  <body>
+<form class="" action="register_user" method="post">
+  {% csrf_token %}
+  Имя<input type="text" name="name" placeholder="Иван" required><br>
+  Фамилия<input type="text" name="surname" placeholder="Иванов" required><br>
+  Почта<input type="text" name="email" placeholder="example@example.com" required><br>
+  Телефон<input type="text" name="phone_number" placeholder="+7(777)777-77-77" required><br>
+  <input type="submit" value="Зарегистрироваться">
+</form>
+  </body>
+</html>

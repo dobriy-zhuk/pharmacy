@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import datetime
+from django.contrib.auth.models import User
 
 class Product(models.Model):
 
@@ -9,12 +11,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class User(models.Model):
-
+class MyUser(models.Model):
     name = models.CharField(max_length=100, help_text="UserName")
-    password = models.CharField(max_length=100, help_text="UserPassword")
-    shopping_cart = models.ManyToManyField(Product)
-
+    surname = models.CharField(max_length=100, help_text="UserSurname")
+    telephone_number = models.CharField(max_length=100, help_text="UserTelephone")
+    email = models.CharField(max_length=100, help_text="UserEmail")
+    perms = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

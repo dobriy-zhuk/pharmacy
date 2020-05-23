@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  </head>
+
+  <body>
+    <a>Ваша корзина</a>
+    <a> {{shopping_cart}}</a>
+    <br>
+    <a>------------------</a>
+    <br>
+    {% for o in products %}
+    <a>Название: {{o.fields.name}}</a>
+    <br>
+    <a>Описание: {{o.fields.description}}</a>
+    <br>
+    <a>Цена: {{o.fields.price}}</a>
+    <br>
+    <a>Кол-во: {{o.fields.amount}}
+    <br>
+    <a>------------------</a>
+    <br>
+    {% endfor %}
+    <a href="/home/delete_cart">Очистить корзину</a>
+  </body>
+</html>
