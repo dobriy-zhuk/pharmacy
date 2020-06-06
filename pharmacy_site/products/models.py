@@ -13,10 +13,12 @@ class Product(models.Model):
 
 class MyUser(models.Model):
     name = models.CharField(max_length=100, help_text="UserName")
+    password = models.CharField(max_length=100, help_text="password")
     surname = models.CharField(max_length=100, help_text="UserSurname")
     telephone_number = models.CharField(max_length=100, help_text="UserTelephone")
     email = models.CharField(max_length=100, help_text="UserEmail")
     perms = models.IntegerField(default=0)
+    token = models.CharField(max_length=100, help_text="token")
 
     def __str__(self):
         return self.name

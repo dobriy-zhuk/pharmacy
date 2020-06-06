@@ -17,11 +17,18 @@
     <br>
     <a>Цена: {{o.fields.price}}</a>
     <br>
-    <a>Кол-во: {{o.fields.amount}}
+    <a>Кол-во: {{o.fields.amount}}</a>
+    <br>
+    <a href="/remove_from_cart/{{o.pk}}">-1</a>
+    <a href="/add_to_cart/{{o.pk}}">+1</a>
     <br>
     <a>------------------</a>
     <br>
     {% endfor %}
-    <a href="/home/delete_cart">Очистить корзину</a>
+    <a>Общая цена: {{price}}</a>
+    <br>
+    <a href="/delete_cart">Очистить корзину</a>
+    <br>
+    <a href="/">Вернуться к товарам</a>
   </body>
 </html>

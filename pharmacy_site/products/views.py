@@ -7,6 +7,7 @@ import datetime, time, json
 from django.http import HttpResponse
 from django.views.generic import ListView
 # Create your views here.
+
 def Get_All_Products(request):
     products = Product.objects.all()
     prod_list = serializers.serialize('json', products)
@@ -30,10 +31,10 @@ def Add_To_Cart(request, key):
     response = redirect('/')
     try:
         temp_cart = request.session['shopping_cart']
-        temp_cart = temp_cart + ',' + str(prod_id)
-        request.session['shopping_cart'] = str(temp_cart)
+        temp_cart.append(prod_id)
+        request.session['shopping_cart'] = temp_cart
     except:
-        request.session['shopping_cart'] = str(prod_id)
+        request.session['shopping_cart'] = [prod_id]
     return response
 
 def RemoveCart(request):
@@ -53,13 +54,26 @@ def UserAdd(request):
         user.save()
     return redirect('/')
 
+def DeleteFromCart(request, key):
+    #try:
+    temp_cart = request.session['shopping_cart']
+    print(temp_cart)
+    if key in temp_cart:
+        ind = temp_cart.index(key)
+        temp_cart.pop(ind)
+        request.session['shopping_cart'] = temp_cart
+    #except:
+            #return redirect('/')
+    return redirect('/')
+
 def Cart(request):
     try:
-        temp_cart = request.session['shopping_cart'].split(',')
+        temp_cart = request.session['shopping_cart']
     except:
         return redirect('/')
     amounts = {}
     product_list = []
+    price = 0
     for i in temp_cart:
         #if i not in amounts.keys():
         amount = temp_cart.count(i)
@@ -69,9 +83,26 @@ def Cart(request):
         product_list.append(pr)
     product_list = serializers.serialize('json', product_list)
     product_list = eval(product_list)
-    print(amounts)
     for i in product_list:
-        i['fields']['amount'] = amounts[str(i['pk'])]
+        i['fields']['amount'] = amounts[i['pk']]
+        price += int(i['fields']['price']) * int(i['fields']['amount'])
     data = {'products': product_list}
-    print(data)
+    data['price'] = price
     return render(request, 'cart.html', data)
+
+def index(request):
+    return render(request, 'index.html')
+
+def login_user(request):
+    _email = request.POST['email']
+    _password = request.POST['password']
+    try:
+        user = MyUser.objects.get(email=_email, password=_password)
+    except:
+        data = {'answer': 'Неверный логин или пароль'}
+        return redirect('/login', data)
+    print(user)
+    return redirect('/login')
+
+def login_form(request):
+    return render(request, 'login.html')
