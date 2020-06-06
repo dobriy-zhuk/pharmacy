@@ -23,7 +23,7 @@ def Product_Details(request, key):
     prod_list = serializers.serialize('json', products)
     prod_list = eval(prod_list)
     data = {'products': prod_list}
-    return render(request, 'list_carts.html', data)
+    return render(request, 'product_details.html', data)
 
 
 def Add_To_Cart(request, key):
@@ -64,7 +64,7 @@ def DeleteFromCart(request, key):
         request.session['shopping_cart'] = temp_cart
     #except:
             #return redirect('/')
-    return redirect('/')
+    return redirect('/cart')
 
 def Cart(request):
     try:
@@ -88,10 +88,13 @@ def Cart(request):
         price += int(i['fields']['price']) * int(i['fields']['amount'])
     data = {'products': product_list}
     data['price'] = price
-    return render(request, 'cart.html', data)
+    return render(request, 'new_cart.html', data)
 
 def index(request):
     return render(request, 'index.html')
+
+def new_cart(request):
+    return render(request, 'new_cart.html')
 
 def login_user(request):
     _email = request.POST['email']
