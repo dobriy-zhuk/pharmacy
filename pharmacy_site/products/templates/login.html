@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  </head>
+
+  <body>
+{% if answer %}
+<a> {{answer}} </a>
+{% endif %}
+<form class="" action="login_user" method="post">
+  {% csrf_token %}
+  Почта<input type="text" name="email" placeholder="+7(777)777-77-77" required><br>
+  Пароль<input type="text" name="password" placeholder="1111" required><br>
+  <input type="submit" value="Войти">
+</form>
+  </body>
+</html>
