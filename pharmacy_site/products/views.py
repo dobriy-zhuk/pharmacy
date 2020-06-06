@@ -7,6 +7,7 @@ import datetime, time, json
 from django.http import HttpResponse
 from django.views.generic import ListView
 # Create your views here.
+
 def Get_All_Products(request):
     products = Product.objects.all()
     prod_list = serializers.serialize('json', products)
